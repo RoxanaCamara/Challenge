@@ -13,10 +13,9 @@ export default function BasicSelect() {
   };
 
   return (
-    <Box sx={{ minWidth: 120 }}>
-      <Typography> Ordenar por</Typography>
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Precio</InputLabel>
+    <Box>
+      <FormControl variant="standard" sx={{ m: 1, minWidth: 320 }}>
+        <InputLabel id="demo-simple-select-label">Ordenar por precio</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
