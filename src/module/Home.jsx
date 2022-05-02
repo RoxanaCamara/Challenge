@@ -15,7 +15,7 @@ export const Home = ({points ="20000"}) => {
         <Typography variant="h4" gutterBottom component="span">
            { `Total de puntos ${points}` }
         </Typography>
-        <Grid container spacing={2}>
+        <Grid container spacing={4} xs={10}>
           { dataProductos.map( (p, index) => {
             return (
               <Grid item key={index} xs={3}>
