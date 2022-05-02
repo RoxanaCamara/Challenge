@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
+import {Box, Typography} from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -14,8 +14,9 @@ export default function BasicSelect() {
 
   return (
     <Box sx={{ minWidth: 120 }}>
+      <Typography> Ordenar por</Typography>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Age</InputLabel>
+        <InputLabel id="demo-simple-select-label">Precio</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
@@ -23,9 +24,8 @@ export default function BasicSelect() {
           label="Age"
           onChange={handleChange}
         >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value={10}>Más baratos</MenuItem>
+          <MenuItem value={20}>Más caros</MenuItem>
         </Select>
       </FormControl>
     </Box>

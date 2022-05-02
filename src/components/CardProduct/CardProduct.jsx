@@ -1,10 +1,5 @@
 import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import {Card, CardActions, CardContent, CardMedia, Chip, Button,Typography } from '@mui/material';
 
 //* Cada producto debe tener un precio en puntos de manera visible.
 //* Debería haber una manera clara para el usuario de ver que productos puede comprar y cuales no.
@@ -14,7 +9,7 @@ import Typography from '@mui/material/Typography';
 //* Un usuario no debería poder comprar un producto del cual no tiene suficientes puntos para comprar.
 
 
-export default function MediaCard ({ name = "", price = 0, pricePoints = 0 } ) {
+export default function MediaCard ({ name = "Lorem impsum", price = 1000, pricePoints = 2000, disabled = true } ) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -23,19 +18,20 @@ export default function MediaCard ({ name = "", price = 0, pricePoints = 0 } ) {
         image="https://cl-mycooktouch.group-taurus.com/image/recipe/545x395/arroz-blanco"
         alt="green iguana"
       />
-      <CardContent>
+      <CardContent>        
         <Typography gutterBottom variant="h5" component="div">
           {name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Price $ {price} , Points Price {pricePoints}
+        <Typography variant="body2" component="div" color="text.secondary">
+          Price $ <Chip label={price} color="primary" />
+        </Typography>
+        <Typography variant="body2" component="div" color="text.secondary">
+          Points Price <Chip label={pricePoints} color="success" variant="outlined" />
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-        <Button variant="contained" color="success">
-        Comrar ahora
+        <Button variant="contained" color="success" disabled={disabled}>
+        Comprar ahora
       </Button>
       </CardActions>
     </Card>
