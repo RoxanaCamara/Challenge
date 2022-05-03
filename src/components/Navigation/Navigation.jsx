@@ -15,9 +15,9 @@ import MenuItem from '@mui/material/MenuItem';
 
 
 const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Historial', 'Account', 'Favorites', 'Logout'];
 
-const ResponsiveAppBar = () => {
+const ResponsiveAppBar = ({ name= 'Narela', points= 2000}) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -108,9 +108,11 @@ const ResponsiveAppBar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />                
               </IconButton>
             </Tooltip>
+              <Typography textAlign="center">{name}</Typography>
+              <Typography variant="body2" component="div" color="text.secondary">{points} puntos</Typography>
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"

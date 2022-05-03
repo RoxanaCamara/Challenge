@@ -8,7 +8,6 @@ Podés encontrar la documentación [acá](https://aerolabchallenge.docs.apiary.i
 
 ## Definición funcional
 El usuario tiene una cantidad definida de puntos y cada producto vale una cantidad de puntos especifica.
-
 * Cada producto debe tener un precio en puntos de manera visible.
 * El usuario debería poder filtrar los productos por precio, de mayor a menor y viceversa.
 * El usuario debería poder ver cuantos puntos tienen en su cuenta.

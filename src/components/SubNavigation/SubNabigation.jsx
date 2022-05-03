@@ -1,19 +1,45 @@
-import { Typography, Grid } from "@mui/material";
 import React from "react";
+import Box from '@mui/material/Box';
+import { Typography, Grid, Toolbar, AppBar, createTheme, ThemeProvider } from "@mui/material";
+import SearchIcon from '@mui/icons-material/Search';
 import BasicSelect from "../Filter/Filter";
+import { Search, SearchIconWrapper, StyledInputBase, SubAppBar } from "../../shared/Shared";
 
-export const SubNabigation = ({ elevation = 0, points = 2000 }) => {
+export const SubNabigation = ({ points = 0 }) => {
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#f44336',
+      },
+      secondary: {
+        main: '#f44336',
+      },
+    },
+  });
+
   return (
-    <Grid
-      container
-      direction="row"
-      justifyContent="space-around"
-      alignItems="flex-start"
-    >
-      <BasicSelect />
-      <Typography variant="h4" gutterBottom component="span">
-        {`Total de puntos ${points}`}
-      </Typography>
-    </Grid>
+    <ThemeProvider theme={theme}>
+    <Box sx={{ flexGrow: 1 }}>
+    <AppBar position='static'>
+      <Toolbar>
+        <Search>
+          <SearchIconWrapper>
+            <SearchIcon />
+          </SearchIconWrapper>
+          <StyledInputBase
+            placeholder="Search…"
+            inputProps={{ 'aria-label': 'search' }}
+          />
+        </Search>   
+        <Box sx={{ flexGrow: 1 }} />
+          <Box>
+            <BasicSelect />
+          </Box>
+      </Toolbar>
+    </AppBar>
+  </Box>
+    </ThemeProvider>
+
   );
 };

@@ -1,9 +1,9 @@
 import React from "react";
-import { Box, Grid, Pagination, ThemeProvider, Typography } from "@mui/material";
+import { Box, Grid, Pagination, ThemeProvider, Typography, Card } from "@mui/material";
 import MediaCard from "../components/CardProduct/CardProduct";
 import BasicSelect from "../components/Filter/Filter";
 import ResponsiveAppBar from "../components/Navigation/Navigation";
-import { dataProductos } from "../shared/Data";
+import { dataProductos, user } from "../shared/Data";
 import { darkTheme, lightTheme } from "../shared/Shared";
 import { SubNabigation } from "../components/SubNavigation/SubNabigation";
 
@@ -12,12 +12,12 @@ export const Home = ({points ="20000"}) => {
     <>
       <ThemeProvider theme={lightTheme}>
         <ResponsiveAppBar />
-        <SubNabigation/>
-        <Grid container spacing={4}>
+        <SubNabigation points={user.points} />        
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           { dataProductos.map( (p, index) => {
             return (
               <Grid item key={index} xs={3}>
-                <MediaCard />
+                <MediaCard name={p.name} price={p.price} pricePoints={p.pricePoints} pricePointsUser={user.points}  />
               </Grid>
             );
           })}
