@@ -2,6 +2,7 @@ import React from "react";
 import Box from '@mui/material/Box';
 import { Typography, Grid, Toolbar, AppBar, createTheme, ThemeProvider } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
+import SelectOrden from "../Orden/Orden";
 import BasicSelect from "../Filter/Filter";
 import { Search, SearchIconWrapper, StyledInputBase, SubAppBar } from "../../shared/Shared";
 
@@ -32,10 +33,8 @@ export const SubNabigation = ({ points = 0 }) => {
             inputProps={{ 'aria-label': 'search' }}
           />
         </Search>   
-        <Box sx={{ flexGrow: 1 }} />
-          <Box>
             <BasicSelect />
-          </Box>
+            <SelectOrden />
       </Toolbar>
     </AppBar>
   </Box>

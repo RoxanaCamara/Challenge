@@ -1,30 +1,33 @@
-import * as React from 'react';
-import { Box, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { Box, Typography, TextField, InputLabel } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-export default function BasicSelect() {
-  const [age, setAge] = React.useState('');
+export default function BasicSelect({ listProduct = [] }) {
+
+  const [filter, setFilter] = useState({ min: 0, max: 0 })
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    event.preventDefault();
+    const { id, value } = event.target
+    console.log(event)
+   console.log(filter)
   };
 
   return (
     <Box>
-      <Typography variant="body2" component="div" color="text.secondary">
-        Ordenar por precio
-      </Typography>
-      <FormControl>
+      <FormControl sx={{ m: 1, minWidth: 180 }}>
+      <InputLabel id="demo-simple-select-label">Precios</InputLabel>
         <Select
-          value={age}
-          onChange={handleChange}
           displayEmpty
           inputProps={{ 'aria-label': 'Without label' }}
         >
-          <MenuItem value={10}>Mas Baratos</MenuItem>
-          <MenuItem value={20}>Mas Caros</MenuItem>
+            Min
+          <TextField id="min" label="Min" variant="outlined" onChange={handleChange} />
+            Max
+          <TextField id="max" label="Max" variant="outlined" onChange={handleChange} />
+
         </Select>
       </FormControl>
     </Box>
