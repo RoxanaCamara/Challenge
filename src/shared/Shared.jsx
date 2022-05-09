@@ -11,9 +11,6 @@ export const Item = styled(Paper)(({ theme }) => ({
   lineHeight: '60px',
 }));
 
-
-
-
 export const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,

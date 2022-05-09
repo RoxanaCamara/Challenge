@@ -111,8 +111,10 @@ const ResponsiveAppBar = ({ name= 'Narela', points= 2000}) => {
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />                
               </IconButton>
             </Tooltip>
+            <Box>
               <Typography textAlign="center">{name}</Typography>
               <Typography variant="body2" component="div" color="text.secondary">{points} puntos</Typography>
+            </Box>
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"

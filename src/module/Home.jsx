@@ -12,11 +12,15 @@ export const Home = ({points ="20000"}) => {
     <>
       <ThemeProvider theme={lightTheme}>
         <ResponsiveAppBar />
-        <SubNabigation points={user.points} />        
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                
+        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} style={{ padding: '3px  45px' }}>
+        <Grid item xs={12}>
+          <SubNabigation points={user.points} />
+        </Grid>
+
           { dataProductos.map( (p, index) => {
             return (
-              <Grid item key={index} xs={3}>
+              <Grid item key={index} xs={2}>
                 <MediaCard name={p.name} price={p.price} pricePoints={p.pricePoints} pricePointsUser={user.points}  />
               </Grid>
             );
