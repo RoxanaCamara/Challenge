@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-export default function MediaCard({ name = "Lorem impsum", price = 1000, pricePoints = 2000, pricePointsUser = 0 }) {
+export default function MediaCard({ product,  pricePoints = 2000, pricePointsUser = 0 }) {
 
   const classes = useStyles();
   const [disable, setDisable] = useState({ disable: true, points: 0 })
@@ -58,15 +58,18 @@ export default function MediaCard({ name = "Lorem impsum", price = 1000, pricePo
         <CardMedia
           component="img"
           height="140"
-          image="https://cl-mycooktouch.group-taurus.com/image/recipe/545x395/arroz-blanco"
+          image={product.img.url}
           alt="green iguana"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {name}
+            {product.name}
           </Typography>
           <Typography variant="body2" component="div" color="text.secondary">
-            Price $ <Chip label={price} color="primary" />
+            {product.category}
+          </Typography>
+          <Typography variant="body2" component="div" color="text.secondary">
+            Price $ <Chip label={product.cost} color="primary" />
           </Typography>
           <Typography variant="body2" component="div" color="text.secondary">
             Points Price <Chip label={pricePoints} color="success" variant="outlined" />

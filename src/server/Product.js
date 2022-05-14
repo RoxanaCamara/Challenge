@@ -1,13 +1,9 @@
 import { instanceAxios } from "./Server";
 
 
-export const handleProducts = async () => {
-    await instanceAxios.get("/products").then(function (response) {
-      console.log(response.data);
-      console.log(response.status);
-      console.log(response.statusText);
-      console.log(response.headers);
-      console.log(response.config);
-    });
+export const handleProducts = async (functitonSetData) => {
+  await instanceAxios.get("/products").then(function (response) {
+    functitonSetData(response.data) ;
+  });
   };
   
