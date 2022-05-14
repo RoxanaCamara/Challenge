@@ -10,6 +10,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import DialogLogin from '../Dialog/Dialog';
 
 //* El usuario debería poder ver cuantos puntos tienen en su cuenta.
 
@@ -17,7 +18,7 @@ import MenuItem from '@mui/material/MenuItem';
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Historial', 'Account', 'Favorites', 'Logout'];
 
-const ResponsiveAppBar = ({ name= 'Narela', points= 2000}) => {
+const ResponsiveAppBar = ({ name = 'Narela', points = 2000 }) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -58,7 +59,7 @@ const ResponsiveAppBar = ({ name= 'Narela', points= 2000}) => {
               onClick={handleOpenNavMenu}
               color="inherit"
             >
-            M
+              M
             </IconButton>
             <Menu
               id="menu-appbar"
@@ -104,40 +105,48 @@ const ResponsiveAppBar = ({ name= 'Narela', points= 2000}) => {
               </Button>
             ))}
           </Box>
-
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />                
-              </IconButton>
-            </Tooltip>
-            <Box>
-              <Typography textAlign="center">{name}</Typography>
-              <Typography variant="body2" component="div" color="text.secondary">{points} puntos</Typography>
-            </Box>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+            {
+              false ?
+
+                <>
+                  <Tooltip title="Open settings">
+                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                      <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                    </IconButton>
+                  </Tooltip>
+                  <Box>
+                    <Typography textAlign="center">{name}</Typography>
+                    <Typography variant="body2" component="div" color="text.secondary">{points} puntos</Typography>
+                  </Box>
+                  <Menu
+                    sx={{ mt: '45px' }}
+                    id="menu-appbar"
+                    anchorEl={anchorElUser}
+                    anchorOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right',
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right',
+                    }}
+                    open={Boolean(anchorElUser)}
+                    onClose={handleCloseUserMenu}
+                  >
+                    {settings.map((setting) => (
+                      <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                        <Typography textAlign="center">{setting}</Typography>
+                      </MenuItem>
+                    ))}
+                  </Menu>
+                </>
+                :
+                <DialogLogin />
+            }
           </Box>
+
         </Toolbar>
       </Container>
     </AppBar>

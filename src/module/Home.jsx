@@ -1,13 +1,14 @@
 import React from "react";
-import { Box, Grid, Pagination, ThemeProvider, Typography, Card } from "@mui/material";
+import { Grid, Pagination, ThemeProvider } from "@mui/material";
 import MediaCard from "../components/CardProduct/CardProduct";
-import BasicSelect from "../components/Filter/Filter";
 import ResponsiveAppBar from "../components/Navigation/Navigation";
 import { dataProductos, user } from "../shared/Data";
-import { darkTheme, lightTheme } from "../shared/Shared";
+import { lightTheme } from "../shared/Shared";
 import { SubNabigation } from "../components/SubNavigation/SubNabigation";
 
 export const Home = ({points ="20000"}) => {
+
+
   return (
     <>
       <ThemeProvider theme={lightTheme}>
