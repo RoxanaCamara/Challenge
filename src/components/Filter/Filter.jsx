@@ -11,8 +11,6 @@ export default function BasicSelect({ listProduct = [] }) {
   const handleChange = (event) => {
     event.preventDefault();
     const { id, value } = event.target
-    console.log(event)
-   console.log(filter)
   };
 
   return (

@@ -1,5 +1,4 @@
 import * as axios from 'axios';
-console.log(process.env.TOKEN)
 
 export const instanceAxios = axios.create({
     baseURL: 'https://coding-challenge-api.aerolab.co/',

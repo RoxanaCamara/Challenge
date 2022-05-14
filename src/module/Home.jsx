@@ -20,8 +20,6 @@ export const Home = ({points ="20000"}) => {
   useEffect(() => {
     handleProducts(setProductos) 
   }, [])
-  
-  console.log(user)
 
   return (
     <>

@@ -11,12 +11,11 @@ const useStyles = makeStyles(theme => ({
   },
   cardDisabled: {
     '&:hover': {
-      backgroundColor: '#EB5353',
+      backgroundColor: '#7F8487',
       cursor: 'pointer',
     },
   },
   paper: {
-    backgroundColor: '#EB5353',
     position: 'absolute',
     width: '120px',
     margin: '30px'
@@ -24,11 +23,14 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-export default function MediaCard({ product,  pricePoints = 2000, pricePointsUser = 0 }) {
+export default function MediaCard({ product,  pricePoints = 0, pricePointsUser = 0 }) {
 
   const classes = useStyles();
   const [disable, setDisable] = useState({ disable: true, points: 0 })
   const [show, setShow] = useState(false)
+
+
+  console.log(product)
 
   const cantBuyProduct = (p1, p2) => {
     let r = p1 - p2
@@ -36,7 +38,6 @@ export default function MediaCard({ product,  pricePoints = 2000, pricePointsUse
   }
 
   const inOver = (e) => {
-    console.log(e)
     setShow(show && disable.disable)
   }
 
@@ -52,14 +53,14 @@ export default function MediaCard({ product,  pricePoints = 2000, pricePointsUse
         {show && disable.disable &&
           <Paper elevation={3} className={classes.paper}>
             <Typography variant="body2" component="div" color="text.secondary">
-              ups.. te faltan <b>{disable.points}</b> puntos para poder comparlo
+              te faltan <b>{disable.points}</b> puntos para poder comparlo
             </Typography>
           </Paper>
         }
 
 
         {
-          show &&
+          show && !disable.disable  &&
           <Button variant="contained" color="success" className={classes.paper} disabled={disable.disable}>
            Comprar ahora
          </Button>
