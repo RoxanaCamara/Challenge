@@ -17,7 +17,6 @@ import TextField from '@mui/material/TextField';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import { handleLogin } from '../../server/Login';
 import { Card } from '@mui/material';
 
 
@@ -25,11 +24,11 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const DialogLogin = () => {
+const DialogLogin = ({ handleLoginUser }) => {
   const [open, setOpen] = React.useState(false);
 
   const loginUser = () => {
-    handleLogin()
+    handleLoginUser()
   }
 
   const handleClickOpen = () => {

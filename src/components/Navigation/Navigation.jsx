@@ -18,7 +18,7 @@ import DialogLogin from '../Dialog/Dialog';
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Historial', 'Account', 'Favorites', 'Logout'];
 
-const ResponsiveAppBar = ({ name = 'Narela', points = 2000 }) => {
+const ResponsiveAppBar = ({ user, handleLoginUser }) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -107,7 +107,7 @@ const ResponsiveAppBar = ({ name = 'Narela', points = 2000 }) => {
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             {
-              false ?
+              user.name != 'Guesst' ?
 
                 <>
                   <Tooltip title="Open settings">
@@ -116,8 +116,8 @@ const ResponsiveAppBar = ({ name = 'Narela', points = 2000 }) => {
                     </IconButton>
                   </Tooltip>
                   <Box>
-                    <Typography textAlign="center">{name}</Typography>
-                    <Typography variant="body2" component="div" color="text.secondary">{points} puntos</Typography>
+                    <Typography textAlign="center">{user.name}</Typography>
+                    <Typography variant="body2" component="div" color="text.secondary">{user.points} puntos</Typography>
                   </Box>
                   <Menu
                     sx={{ mt: '45px' }}
@@ -143,7 +143,7 @@ const ResponsiveAppBar = ({ name = 'Narela', points = 2000 }) => {
                   </Menu>
                 </>
                 :
-                <DialogLogin />
+                <DialogLogin handleLoginUser={handleLoginUser} />
             }
           </Box>
 
