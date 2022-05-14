@@ -17,6 +17,8 @@ import TextField from '@mui/material/TextField';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import { handleLogin } from '../../server/Login';
+import { Card } from '@mui/material';
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -26,8 +28,13 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const DialogLogin = () => {
   const [open, setOpen] = React.useState(false);
 
+  const loginUser = () => {
+    handleLogin()
+  }
+
   const handleClickOpen = () => {
     setOpen(true);
+   
   };
 
   const handleClose = () => {
@@ -82,11 +89,12 @@ const DialogLogin = () => {
           </Toolbar>
         </AppBar>
 
+        <Card variant="outlined">
         <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined" >
           <InputLabel htmlFor="outlined-adornment-password">
             With a start adornment
           </InputLabel>
-          <Input
+          <OutlinedInput
             id="input-with-icon-adornment"
             startAdornment={
               <InputAdornment position="start">
@@ -118,7 +126,8 @@ const DialogLogin = () => {
             label="Password"
           />
         </FormControl>
-
+        <Button variant="contained" color="success" onClick={ () => loginUser()}>Login</Button>
+       </Card>
       </Dialog>
     </div>
   );
