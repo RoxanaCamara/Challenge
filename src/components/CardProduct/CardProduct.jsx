@@ -54,7 +54,17 @@ export default function MediaCard({ product,  pricePoints = 2000, pricePointsUse
             <Typography variant="body2" component="div" color="text.secondary">
               ups.. te faltan <b>{disable.points}</b> puntos para poder comparlo
             </Typography>
-          </Paper>}
+          </Paper>
+        }
+
+
+        {
+          show &&
+          <Button variant="contained" color="success" className={classes.paper} disabled={disable.disable}>
+           Comprar ahora
+         </Button>
+        }
+
         <CardMedia
           component="img"
           height="140"
@@ -76,9 +86,7 @@ export default function MediaCard({ product,  pricePoints = 2000, pricePointsUse
           </Typography>
         </CardContent>
         <CardActions>
-          <Button variant="contained" color="success" disabled={disable.disable}>
-            Comprar ahora
-          </Button>
+         
         </CardActions>
       </Card>
     </>
