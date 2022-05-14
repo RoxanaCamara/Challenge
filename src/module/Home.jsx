@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Grid, Pagination, ThemeProvider } from "@mui/material";
 import MediaCard from "../components/CardProduct/CardProduct";
 import ResponsiveAppBar from "../components/Navigation/Navigation";
 import { dataProductos, user } from "../shared/Data";
 import { lightTheme } from "../shared/Shared";
 import { SubNabigation } from "../components/SubNavigation/SubNabigation";
+import { handleProducts } from "../server/Product";
 
 export const Home = ({points ="20000"}) => {
+
+  useEffect(() => {
+    handleProducts()
+  }, [])
+  
 
 
   return (
