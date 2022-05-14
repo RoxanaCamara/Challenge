@@ -4,22 +4,25 @@ import MediaCard from "../components/CardProduct/CardProduct";
 import ResponsiveAppBar from "../components/Navigation/Navigation";
 import { lightTheme } from "../shared/Shared";
 import { SubNabigation } from "../components/SubNavigation/SubNabigation";
-import { handleProducts } from "../server/Product";
-import { handleLogin } from "../server/Login";
+import { login, products } from "../server/Server";
 
-export const Home = ({points ="20000"}) => {
+export const Home = () => {
 
   const [productos, setProductos] = useState()
-
   const [user, setUser] = useState({ name: "Guesst", points: 0})
 
   const handleUsuario  = () => {
-    handleLogin(setUser)
+    login(setUser)
   }
   
   useEffect(() => {
-    handleProducts(setProductos) 
+    products(setProductos)
   }, [])
+
+
+  const handleBuyProduct = (newPointsUser) => {
+    setUser({  ...user, points: newPointsUser } )
+  }
 
   return (
     <>
@@ -37,7 +40,7 @@ export const Home = ({points ="20000"}) => {
            { productos.map( (p, index) => {
              return (
                <Grid item key={index} xs={2}>
-                 <MediaCard product={p} pricePoints={p.pricePoints} pricePointsUser={user.points}  />
+                 <MediaCard product={p} pricePoints={p.pricePoints} pricePointsUser={user.points} buyProduct={handleBuyProduct}  />
                </Grid>
              );
            })}

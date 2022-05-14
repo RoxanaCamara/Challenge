@@ -23,45 +23,49 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-export default function MediaCard({ product,  pricePoints = 0, pricePointsUser = 0 }) {
+export default function MediaCard({ product, pricePointsUser, buyProduct }) {
 
   const classes = useStyles();
-  const [disable, setDisable] = useState({ disable: true, points: 0 })
+  const [disable, setDisable] = useState(true)
   const [show, setShow] = useState(false)
 
-
-  console.log(product)
-
+  
   const cantBuyProduct = (p1, p2) => {
-    let r = p1 - p2
-    setDisable({ disable: (r >= 0), points: r })
+    let result = (p1 -  p2) > 0
+    setDisable( result)
   }
 
-  const inOver = (e) => {
-    setShow(show && disable.disable)
+  const handleBuyProduct = () => {
+    buyProduct(pricePointsUser - product.cost )
   }
+
+  
 
   useEffect(() => {
-    cantBuyProduct(pricePoints, pricePointsUser)
+    cantBuyProduct( product.cost, pricePointsUser)
   }, [])
+
+  useEffect(() => {
+    cantBuyProduct( product.cost, pricePointsUser)
+  }, [pricePointsUser])
 
   return (
     <>
       <Card sx={{ maxWidth: 345 }} className={disable.disable ? classes.cardDisabled : classes.card} 
       onMouseOver={() => setShow(true)} onMouseOut={() => setShow(false)}>
 
-        {show && disable.disable &&
+        { show && disable &&
           <Paper elevation={3} className={classes.paper}>
             <Typography variant="body2" component="div" color="text.secondary">
-              te faltan <b>{disable.points}</b> puntos para poder comparlo
+              te faltan <b>{product.cost - pricePointsUser}</b> puntos para poder comparlo
             </Typography>
           </Paper>
         }
 
 
         {
-          show && !disable.disable  &&
-          <Button variant="contained" color="success" className={classes.paper} disabled={disable.disable}>
+          show && (!disable)  &&
+          <Button variant="contained" onClick={handleBuyProduct} color="success" className={classes.paper} disabled={disable}>
            Comprar ahora
          </Button>
         }
@@ -80,10 +84,7 @@ export default function MediaCard({ product,  pricePoints = 0, pricePointsUser =
             {product.category}
           </Typography>
           <Typography variant="body2" component="div" color="text.secondary">
-            Price $ <Chip label={product.cost} color="primary" />
-          </Typography>
-          <Typography variant="body2" component="div" color="text.secondary">
-            Points Price <Chip label={pricePoints} color="success" variant="outlined" />
+            Points Price $ <Chip label={product.cost} color="primary" />
           </Typography>
         </CardContent>
         <CardActions>
