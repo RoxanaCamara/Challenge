@@ -67,7 +67,7 @@ const DialogLogin = ({ handleLoginUser }) => {
   return (
     <div>
       <Button color="success" variant="contained" onClick={handleClickOpen}>
-        Login / Sign in
+        Login
       </Button>
       <Dialog
         fullScreen

@@ -7,16 +7,22 @@ const useStyles = makeStyles(theme => ({
     height: 320,
     width: 190,
     '&:hover': {
-      backgroundColor: '#CCF3EE',
+      backgroundColor: '#F2FFE9',
     },
   },
   cardDisabled: {
-    backgroundColor: '#7F8487',
     '&:hover': {
-      backgroundColor: '#7F8487',
+      backgroundColor: '#DDDDDD',
     },
   },
   paper: {
+    position: 'absolute',
+    width: '120px',
+    margin: '30px',
+    backgroundColor: '#DDDDDD',
+    color: '#F1EEE9'
+  },
+  button: {
     position: 'absolute',
     width: '120px',
     margin: '30px'
@@ -69,7 +75,7 @@ export default function MediaCard({ product, pricePointsUser, buyProduct }) {
 
         {
           show && (!disable)  &&
-          <Button variant="contained" onClick={handleBuyProduct} color="success" className={classes.paper} disabled={disable}>
+          <Button variant="contained" onClick={handleBuyProduct} color="success" className={classes.button} disabled={disable}>
            Comprar ahora
          </Button>
         }

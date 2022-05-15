@@ -31,7 +31,7 @@ export const Home = () => {
 
   const handleChangePage = (num) => {
     let productAll = productos;    
-    let cant =  5
+    let cant =  16
     let total =  Math.ceil(productAll.length / cant)
     let fin = num * cant
     let inicio = fin - cant
