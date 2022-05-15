@@ -4,21 +4,26 @@ import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles(theme => ({
   card: {
+    height: 320,
+    width: 190,
     '&:hover': {
       backgroundColor: '#CCF3EE',
-      cursor: 'pointer',
     },
   },
   cardDisabled: {
+    backgroundColor: '#7F8487',
     '&:hover': {
       backgroundColor: '#7F8487',
-      cursor: 'pointer',
     },
   },
   paper: {
     position: 'absolute',
     width: '120px',
     margin: '30px'
+  },
+  img: {
+    width: 200,
+    height: 120    
   }
 
 }));
@@ -28,7 +33,6 @@ export default function MediaCard({ product, pricePointsUser, buyProduct }) {
   const classes = useStyles();
   const [disable, setDisable] = useState(true)
   const [show, setShow] = useState(false)
-
   
   const cantBuyProduct = (p1, p2) => {
     let result = (p1 -  p2) > 0
@@ -39,8 +43,6 @@ export default function MediaCard({ product, pricePointsUser, buyProduct }) {
     buyProduct(pricePointsUser - product.cost )
   }
 
-  
-
   useEffect(() => {
     cantBuyProduct( product.cost, pricePointsUser)
   }, [])
@@ -49,9 +51,11 @@ export default function MediaCard({ product, pricePointsUser, buyProduct }) {
     cantBuyProduct( product.cost, pricePointsUser)
   }, [pricePointsUser])
 
+  
   return (
     <>
-      <Card sx={{ maxWidth: 345 }} className={disable.disable ? classes.cardDisabled : classes.card} 
+    
+      <Card sx={{ maxWidth: 345 }} className={disable ? classes.cardDisabled : classes.card} 
       onMouseOver={() => setShow(true)} onMouseOut={() => setShow(false)}>
 
         { show && disable &&
@@ -71,8 +75,8 @@ export default function MediaCard({ product, pricePointsUser, buyProduct }) {
         }
 
         <CardMedia
+         className={classes.img}
           component="img"
-          height="140"
           image={product.img.url}
           alt="green iguana"
         />
@@ -81,11 +85,12 @@ export default function MediaCard({ product, pricePointsUser, buyProduct }) {
             {product.name}
           </Typography>
           <Typography variant="body2" component="div" color="text.secondary">
-            {product.category}
+            Points Price <Chip label={product.cost} color="primary" />            
           </Typography>
           <Typography variant="body2" component="div" color="text.secondary">
-            Points Price $ <Chip label={product.cost} color="primary" />
+           <Chip label={product.category} color="primary" />
           </Typography>
+          
         </CardContent>
         <CardActions>
          

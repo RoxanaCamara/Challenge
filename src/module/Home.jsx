@@ -7,28 +7,53 @@ import { SubNabigation } from "../components/SubNavigation/SubNabigation";
 import { login, products } from "../server/Server";
 
 export const Home = () => {
-
-  const [productos, setProductos] = useState()
+  const [productos, setProductos] = useState([])
+  const [productosCurrent, setProductosCurrent] = useState()
   const [user, setUser] = useState({ name: "Guesst", points: 0})
+  const [page, setPage] = useState()
 
   const handleUsuario  = () => {
     login(setUser)
   }
   
   useEffect(() => {
-    products(setProductos)
+    products(setProductos)    
   }, [])
 
+  useEffect(() => {  
+    handleChangePage(1)
+  }, [productos])
+  
 
   const handleBuyProduct = (newPointsUser) => {
     setUser({  ...user, points: newPointsUser } )
   }
 
+  const handleChangePage = (num) => {
+    let productAll = productos;    
+    let cant =  5
+    let total =  Math.ceil(productAll.length / cant)
+    let fin = num * cant
+    let inicio = fin - cant
+    let productRest = productAll.slice( inicio,fin )
+    setProductosCurrent(productRest)
+    console.log(num)
+    setPage({ currentPage: num, totalPages: total  }); 
+    console.log(page)
+
+  }
+
+  const handleChange = (event, value) => {
+    handleChangePage(value)
+  };
+
+  
+
   return (
     <>
       <ThemeProvider theme={lightTheme}>
        {
-         productos ?
+         productosCurrent ?
 
          <>
          <ResponsiveAppBar handleLoginUser={handleUsuario} user={user} />                
@@ -37,7 +62,7 @@ export const Home = () => {
            <SubNabigation points={user.points} />
          </Grid>
  
-           { productos.map( (p, index) => {
+           { productosCurrent.map( (p, index) => {
              return (
                <Grid item key={index} xs={2}>
                  <MediaCard product={p} pricePoints={p.pricePoints} pricePointsUser={user.points} buyProduct={handleBuyProduct}  />
@@ -45,7 +70,7 @@ export const Home = () => {
              );
            })}
            <Grid item xs={12}>
-             <Pagination count={10} size="large" />
+             <Pagination count={page.totalPages} page={page.currentPage} size="large" onChange={handleChange}  />
            </Grid>          
          </Grid>
          </>
@@ -53,8 +78,6 @@ export const Home = () => {
          <Typography variant="body2" component="div" color="text.secondary">
               ups..paciencia
         </Typography>
-
-
        }
       </ThemeProvider>
     </>
