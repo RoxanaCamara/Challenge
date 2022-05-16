@@ -4,11 +4,13 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-export default function SelectOrden() {
+export default function SelectOrden({handleOrden}) {
   const [age, setAge] = React.useState('');
 
   const handleChange = (event) => {
+    event.preventDefault();
     setAge(event.target.value);
+    handleOrden(event.target.value)
   };
 
   return (
@@ -21,8 +23,8 @@ export default function SelectOrden() {
           displayEmpty
           inputProps={{ 'aria-label': 'Without label' }}
         >
-          <MenuItem value={10}>Mas Baratos</MenuItem>
-          <MenuItem value={20}>Mas Caros</MenuItem>
+          <MenuItem value={'mas_baratos'}>Mas Baratos</MenuItem>
+          <MenuItem value={'mas_caros'}>Mas Caros</MenuItem>
         </Select>
       </FormControl>
     </Box>

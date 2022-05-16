@@ -4,13 +4,14 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-export default function BasicSelect({ listProduct = [] }) {
+const FilterSelect = ({ handleFilter })  => {
 
   const [filter, setFilter] = useState({ min: 0, max: 0 })
 
   const handleChange = (event) => {
     event.preventDefault();
     const { id, value } = event.target
+    handleFilter(id, value)
   };
 
   return (
@@ -31,3 +32,5 @@ export default function BasicSelect({ listProduct = [] }) {
     </Box>
   );
 }
+
+export default FilterSelect

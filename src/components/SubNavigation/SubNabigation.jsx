@@ -4,9 +4,9 @@ import { Typography, Grid, Toolbar, AppBar, createTheme, ThemeProvider } from "@
 import SearchIcon from '@mui/icons-material/Search';
 import SelectOrden from "../Orden/Orden";
 import BasicSelect from "../Filter/Filter";
-import { Search, SearchIconWrapper, StyledInputBase, SubAppBar } from "../../shared/Shared";
+import { Search, SearchIconWrapper, StyledInputBase } from "../../shared/Shared";
 
-export const SubNabigation = ({ points = 0 }) => {
+export const SubNabigation = ({ handleOrden, handleFilter, handleSearch }) => {
 
   const theme = createTheme({
     palette: {
@@ -18,6 +18,11 @@ export const SubNabigation = ({ points = 0 }) => {
       },
     },
   });
+
+  const handleChange = (event) => {
+    event.preventDefault();
+    handleSearch(event.target.value)
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -31,10 +36,11 @@ export const SubNabigation = ({ points = 0 }) => {
           <StyledInputBase
             placeholder="Search…"
             inputProps={{ 'aria-label': 'search' }}
+            onChange={handleChange}
           />
         </Search>   
-            <BasicSelect />
-            <SelectOrden />
+            <BasicSelect  handleFilter={handleFilter}/>
+            <SelectOrden handleOrden={handleOrden} />
       </Toolbar>
     </AppBar>
   </Box>

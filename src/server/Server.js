@@ -12,7 +12,9 @@ export const instanceAxios = axios.create({
 
 const handleGet = async (path, functionLogin) => {
   await instanceAxios.get(path).then(function (response) {
-    functionLogin(response.data);
+    if(response.data){
+      functionLogin(response.data);
+    }
   });
 };
 
