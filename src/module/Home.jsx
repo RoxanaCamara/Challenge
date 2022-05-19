@@ -4,13 +4,13 @@ import MediaCard from "../components/CardProduct/CardProduct";
 import ResponsiveAppBar from "../components/Navigation/Navigation";
 import { lightTheme } from "../shared/Shared";
 import { SubNabigation } from "../components/SubNavigation/SubNabigation";
-import { login, products } from "../server/Server";
-import { ACTION_ORDEN, CANT_ITEM_PANT, reducer } from "./Reducer";
+import { login } from "../server/Server";
+import { ACTION_FILTER, ACTION_ORDEN, ACTION_PAGE, ACTION_SEARCH, CANT_ITEM_PANT, reducer } from "./Reducer";
 
 export const Home = ({productos}) => {
   const [user, setUser] = useState({ name: "Guesst", points: 0})
   const [page, setPage] = useState({ currentPage: 1, totalPages: 1 })
-  const [productosCurrent, dispatch] = useReducer(reducer, productos );
+  const [all, dispatch] = useReducer(reducer, {  productos, productosCurrent: productos  } );
 
   const handleUsuario  = () => {
     login(setUser)
@@ -26,20 +26,20 @@ export const Home = ({productos}) => {
   }
 
   const handleChangeOrden = (typeOrden) => {
-    dispatch({ type: ACTION_ORDEN, type: typeOrden });
+    dispatch({ type: ACTION_ORDEN, typeOrden });
   };
 
-  const handleChangeFilter = (id, value,) => {
-    dispatch({ type: "FILTER", id: id, valor: value });
+  const handleChangeFilter = (filter) => {
+    dispatch({ type: ACTION_FILTER, filter });
   };
 
   const handleChangeSearch = (value) => {
-    dispatch({type: "SEARCH",  textSearch: value });
+    dispatch({type: ACTION_SEARCH,  textSearch: value });
   };
 
   const handleChangePage = (num ) => {
-    dispatch({type: "PAGE",  num: num });
-    setPage({ currentPage: num, totalPages: Math.ceil(productos.length / CANT_ITEM_PANT) });
+    dispatch({type: ACTION_PAGE,  num: num });
+    setPage({ currentPage: num, totalPages: Math.ceil(all.productosCurrent.length / CANT_ITEM_PANT) });
   };
   
   return (
@@ -50,7 +50,7 @@ export const Home = ({productos}) => {
          <Grid item xs={12}>
            <SubNabigation points={user.points} handleOrden={handleChangeOrden} handleFilter={handleChangeFilter} handleSearch={handleChangeSearch} />
          </Grid> 
-         { productosCurrent.map( (p, index) => {
+         { all.productosCurrent.map( (p, index) => {
         return (
           <Grid item key={index} xs={2}>
             <MediaCard product={p} pricePoints={p.pricePoints} pricePointsUser={user.points} buyProduct={handleBuyProduct}  />
