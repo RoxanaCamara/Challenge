@@ -27,17 +27,20 @@ export const Home = ({productos}) => {
 
   const handleChangeOrden = (typeOrden) => {
     dispatch({ type: ACTION_ORDEN, typeOrden });
+    handleChangePage(1)
   };
 
   const handleChangeFilter = (filter) => {
     dispatch({ type: ACTION_FILTER, filter });
+    handleChangePage(1)
   };
 
   const handleChangeSearch = (value) => {
     dispatch({type: ACTION_SEARCH,  textSearch: value });
+    handleChangePage(1)
   };
 
-  const handleChangePage = (num ) => {
+  const handleChangePage = (num) => {
     dispatch({type: ACTION_PAGE,  num: num });
     setPage({ currentPage: num, totalPages: Math.ceil(all.productosCurrent.length / CANT_ITEM_PANT) });
   };

@@ -3,8 +3,8 @@ import Box from '@mui/material/Box';
 import { Typography, Grid, Toolbar, AppBar, createTheme, ThemeProvider } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 import SelectOrden from "../Orden/Orden";
-import BasicSelect from "../Filter/Filter";
 import { Search, SearchIconWrapper, StyledInputBase } from "../../shared/Shared";
+import FilterSelect from "../Filter/Filter";
 
 export const SubNabigation = ({ handleOrden, handleFilter, handleSearch }) => {
 
@@ -39,7 +39,7 @@ export const SubNabigation = ({ handleOrden, handleFilter, handleSearch }) => {
             onChange={handleChange}
           />
         </Search>   
-            <BasicSelect  handleFilter={handleFilter}/>
+            <FilterSelect  handleFilter={handleFilter}/>
             <SelectOrden handleOrden={handleOrden} />
       </Toolbar>
     </AppBar>
