@@ -12,8 +12,10 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import DialogLogin from '../Dialog/Dialog';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import MenuIcon from '@mui/icons-material/Menu';
 
 //* El usuario debería poder ver cuantos puntos tienen en su cuenta.
+
 
 
 const pages = ['Products', 'Pricing', 'Blog'];
@@ -50,7 +52,7 @@ const ResponsiveAppBar = ({ user, handleLoginUser }) => {
             component="div"
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
-            LOGO
+            Aerolab
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -62,7 +64,7 @@ const ResponsiveAppBar = ({ user, handleLoginUser }) => {
               onClick={handleOpenNavMenu}
               color="inherit"
             >
-              M
+            <MenuIcon/>
             </IconButton>
             <Menu
               id="menu-appbar"
@@ -95,7 +97,7 @@ const ResponsiveAppBar = ({ user, handleLoginUser }) => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
           >
-            LOGO
+            Aerolab
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
