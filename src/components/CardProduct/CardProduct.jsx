@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardActions, CardContent, CardMedia, Chip, Button, Typography, Paper } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import CustomizedDialogs from '../DialogBuy/DialogBuy';
 
 const useStyles = makeStyles(theme => ({
   card: {
-    height: 320,
+    height: 380,
     width: 190,
     '&:hover': {
       backgroundColor: '#F2FFE9',
@@ -71,15 +72,6 @@ export default function MediaCard({ product, pricePointsUser, buyProduct }) {
             </Typography>
           </Paper>
         }
-
-
-        {
-          show && (!disable)  &&
-          <Button variant="contained" onClick={handleBuyProduct} color="success" className={classes.button} disabled={disable}>
-           Comprar ahora
-         </Button>
-        }
-
         <CardMedia
          className={classes.img}
           component="img"
@@ -99,7 +91,11 @@ export default function MediaCard({ product, pricePointsUser, buyProduct }) {
           
         </CardContent>
         <CardActions>
-         
+        {
+          show && 
+         <CustomizedDialogs  disabled={disable} handleBuy={handleBuyProduct} product={product} />
+        }
+        
         </CardActions>
       </Card>
     </>

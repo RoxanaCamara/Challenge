@@ -19,7 +19,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-const DialogBuy = (props) => {
+const BootstrapDialogTitle = (props) => {
   const { children, onClose, ...other } = props;
 
   return (
@@ -48,7 +48,7 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-export default function CustomizedDialogs() {
+ const CustomizedDialogs = ({ handleBuy, disabled, product}) => {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -60,8 +60,8 @@ export default function CustomizedDialogs() {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Open dialog
+      <Button variant="contained"color="success" onClick={handleClickOpen} disabled={disabled} >
+        Comprar
       </Button>
       <BootstrapDialog
         onClose={handleClose}
@@ -96,3 +96,4 @@ export default function CustomizedDialogs() {
     </div>
   );
 }
+export default CustomizedDialogs;
