@@ -19,7 +19,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 
 const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Historial', 'Account', 'Favorites', 'Logout'];
+const settings = [ 'Account', 'Buy Points $', 'Historial', 'Favorites', 'Logout'];
 
 const ResponsiveAppBar = ({ user, handleLoginUser }) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
