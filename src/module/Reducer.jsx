@@ -9,6 +9,8 @@ export const reducer = (state, action) => {
       return {  ...state, productosCurrent: handleChangeSearch(action.textSearch, state.productos) } 
     case ACTION_PAGE:
       return {  ...state, productosCurrent: handleChangePage(action.num, state.productosCurrent) }
+    case ACTION_RESET:
+      return {  ...state, productosCurrent: state.productos }
     default:
       return state;
   }
@@ -49,3 +51,4 @@ export const ACTION_ORDEN = 'ORDEN'
 export const ACTION_FILTER = 'FILTER'
 export const ACTION_SEARCH = 'SEARCH'
 export const ACTION_PAGE = 'PAGE'
+export const ACTION_RESET = 'RESET'

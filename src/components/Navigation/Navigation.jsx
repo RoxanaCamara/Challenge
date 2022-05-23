@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import DialogLogin from '../Dialog/Dialog';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 //* El usuario debería poder ver cuantos puntos tienen en su cuenta.
 
@@ -36,6 +37,8 @@ const ResponsiveAppBar = ({ user, handleLoginUser }) => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const open = Boolean(anchorElUser);
 
   return (
     <AppBar position="static">
@@ -111,14 +114,21 @@ const ResponsiveAppBar = ({ user, handleLoginUser }) => {
 
                 <>
                   <Tooltip title="Open settings">
-                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Button
+                      id="demo-customized-button"
+                      aria-controls={open ? 'demo-customized-menu' : undefined}
+                      aria-haspopup="true"
+                      aria-expanded={open ? 'true' : undefined}
+                      variant="contained"
+                      disableElevation
+                      onClick={handleOpenUserMenu} sx={{ p: 0 }}
+                      endIcon={<KeyboardArrowDownIcon />}
+                    >
                       <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                    </IconButton>
+                      <Typography textAlign="center">{user.name}</Typography>
+                      <Typography variant="body2" component="div" color="text.secondary">{user.points} puntos</Typography>
+                    </Button>
                   </Tooltip>
-                  <Box>
-                    <Typography textAlign="center">{user.name}</Typography>
-                    <Typography variant="body2" component="div" color="text.secondary">{user.points} puntos</Typography>
-                  </Box>
                   <Menu
                     sx={{ mt: '45px' }}
                     id="menu-appbar"
@@ -141,6 +151,7 @@ const ResponsiveAppBar = ({ user, handleLoginUser }) => {
                       </MenuItem>
                     ))}
                   </Menu>
+
                 </>
                 :
                 <DialogLogin handleLoginUser={handleLoginUser} />

@@ -53,7 +53,7 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-const FilterSelect = ({ handleFilter}) => {
+const FilterSelect = ({ handleFilter, handleReset}) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const [filter, setFilter] = useState({ min: 0, max: 0 })
@@ -66,7 +66,13 @@ const FilterSelect = ({ handleFilter}) => {
     setAnchorEl(null);
   };
 
+  const handleChangeReset = () => {
+    handleReset();
+    handleFilter({ min: 0, max: 0 })
+  };
 
+
+  
   return (
     <div>
       <Button
@@ -98,7 +104,7 @@ const FilterSelect = ({ handleFilter}) => {
         </MenuItem>
         <Divider sx={{ my: 0.5 }} />
         <MenuItem onClick={handleClose} disableRipple>
-            <Button variant="contained" size="small" onClick={() => handleFilter({ min: 0, max: 0 })}>
+            <Button variant="contained" size="small" onClick={() => handleChangeReset}>
             clear
           </Button>
         </MenuItem>

@@ -5,7 +5,7 @@ import ResponsiveAppBar from "../components/Navigation/Navigation";
 import { lightTheme } from "../shared/Shared";
 import { SubNabigation } from "../components/SubNavigation/SubNabigation";
 import { login } from "../server/Server";
-import { ACTION_FILTER, ACTION_ORDEN, ACTION_PAGE, ACTION_SEARCH, CANT_ITEM_PANT, reducer } from "./Reducer";
+import { ACTION_FILTER, ACTION_ORDEN, ACTION_PAGE, ACTION_RESET, ACTION_SEARCH, CANT_ITEM_PANT, reducer } from "./Reducer";
 
 export const Home = ({productos}) => {
   const [user, setUser] = useState({ name: "Guesst", points: 0})
@@ -40,6 +40,12 @@ export const Home = ({productos}) => {
     handleChangePage(1)
   };
 
+  const handleChangeReset = () => {
+    dispatch({type: ACTION_RESET});
+    handleChangePage(1)
+  };
+
+  
   const handleChangePage = (num) => {
     dispatch({type: ACTION_PAGE,  num: num });
     setPage({ currentPage: num, totalPages: Math.ceil(all.productosCurrent.length / CANT_ITEM_PANT) });
@@ -51,7 +57,7 @@ export const Home = ({productos}) => {
          <ResponsiveAppBar handleLoginUser={handleUsuario} user={user} />                
          <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} style={{ padding: '3px  45px' }}>
          <Grid item xs={12}>
-           <SubNabigation points={user.points} handleOrden={handleChangeOrden} handleFilter={handleChangeFilter} handleSearch={handleChangeSearch} />
+           <SubNabigation points={user.points} handleOrden={handleChangeOrden} handleFilter={handleChangeFilter} handleSearch={handleChangeSearch} handleReset={ handleChangeReset} />
          </Grid> 
          { all.productosCurrent.map( (p, index) => {
         return (

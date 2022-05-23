@@ -6,7 +6,7 @@ import SelectOrden from "../Orden/Orden";
 import { Search, SearchIconWrapper, StyledInputBase } from "../../shared/Shared";
 import FilterSelect from "../Filter/Filter";
 
-export const SubNabigation = ({ handleOrden, handleFilter, handleSearch }) => {
+export const SubNabigation = ({ handleOrden, handleFilter, handleSearch, handleReset }) => {
 
   const theme = createTheme({
     palette: {
@@ -39,8 +39,8 @@ export const SubNabigation = ({ handleOrden, handleFilter, handleSearch }) => {
             onChange={handleChange}
           />
         </Search>   
-            <FilterSelect  handleFilter={handleFilter}/>
-            <SelectOrden handleOrden={handleOrden} />
+            <FilterSelect  handleFilter={handleFilter} handleReset={handleReset} />
+            <SelectOrden handleOrden={handleOrden} handleReset={handleReset} />
       </Toolbar>
     </AppBar>
   </Box>
