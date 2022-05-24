@@ -1,11 +1,11 @@
 import React, { useEffect, useReducer, useState } from "react";
 import { Grid, Pagination, ThemeProvider, Typography } from "@mui/material";
-import MediaCard from "../components/CardProduct/CardProduct";
 import ResponsiveAppBar from "../components/Navigation/Navigation";
 import { lightTheme } from "../shared/Shared";
 import { SubNabigation } from "../components/SubNavigation/SubNabigation";
 import { login } from "../server/Server";
 import { ACTION_FILTER, ACTION_ORDEN, ACTION_PAGE, ACTION_RESET, ACTION_SEARCH, CANT_ITEM_PANT, reducer } from "./Reducer";
+import { ListerProducts } from "../components/ListerProducts/ListerProducts";
 
 export const Home = ({productos}) => {
   const [user, setUser] = useState({ name: "Guesst", points: 0})
@@ -54,22 +54,10 @@ export const Home = ({productos}) => {
   return (
     <>
       <ThemeProvider theme={lightTheme}>
-         <ResponsiveAppBar handleLoginUser={handleUsuario} user={user} />                
-         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} style={{ padding: '3px  45px' }}>
-         <Grid item xs={12}>
-           <SubNabigation points={user.points} handleOrden={handleChangeOrden} handleFilter={handleChangeFilter} handleSearch={handleChangeSearch} handleReset={ handleChangeReset} />
-         </Grid> 
-         { all.productosCurrent.map( (p, index) => {
-        return (
-          <Grid item key={index} xs={2}>
-            <MediaCard product={p} pricePoints={p.pricePoints} pricePointsUser={user.points} buyProduct={handleBuyProduct}  />
-          </Grid>
-        );
-      })}
-           <Grid item xs={12}>
-             <Pagination count={page.totalPages} page={page.currentPage} size="large" onChange={(event, value) => handleChangePage(value)}  />
-           </Grid>          
-         </Grid>
+        <ResponsiveAppBar handleLoginUser={handleUsuario} user={user} />                
+        <SubNabigation points={user.points} handleOrden={handleChangeOrden} handleFilter={handleChangeFilter} handleSearch={handleChangeSearch} handleReset={ handleChangeReset} />
+        <ListerProducts productosCurrent={all.productosCurrent}  points={user.points}  handleBuyProduct={handleBuyProduct} />
+        <Pagination count={page.totalPages} page={page.currentPage} size="large" onChange={(event, value) => handleChangePage(value)}  />
       </ThemeProvider>
     </>
   );
