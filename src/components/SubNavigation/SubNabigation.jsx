@@ -5,8 +5,10 @@ import SearchIcon from '@mui/icons-material/Search';
 import SelectOrden from "../Orden/Orden";
 import { Search, SearchIconWrapper, StyledInputBase } from "../../shared/Shared";
 import FilterSelect from "../Filter/Filter";
+import { useProducts } from "../../hooks/useProducts";
 
-export const SubNabigation = ({ handleOrden, handleFilter, handleSearch, handleReset }) => {
+export const SubNabigation = ({}) => {
+  const { handleSearch } = useProducts()
 
   const theme = createTheme({
     palette: {
@@ -39,8 +41,8 @@ export const SubNabigation = ({ handleOrden, handleFilter, handleSearch, handleR
             onChange={handleChange}
           />
         </Search>   
-            <FilterSelect  handleFilter={handleFilter} handleReset={handleReset} />
-            <SelectOrden handleOrden={handleOrden} handleReset={handleReset} />
+            <FilterSelect />
+            <SelectOrden />
       </Toolbar>
     </AppBar>
   </Box>

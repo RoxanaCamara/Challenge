@@ -4,15 +4,15 @@ import {
     Routes,
     Route,
   } from "react-router-dom";
-import App from '../App';
-import { HistoryPage } from '../module/History';
-import { Points } from '../module/Points';
+import { HistoryPage } from '../module/History/History';
+import { Home } from '../module/Home/Home';
+import { Points } from '../module/Points/Points';
 
 export const RoutesPage = () => {
   return (
     <BrowserRouter>
         <Routes>
-          <Route path="/menu" element={<App />} />
+          <Route path="/menu" element={<Home />} />
           <Route path="/points" element={<Points />} />
           <Route path="/history" element={<HistoryPage />} />
         </Routes>

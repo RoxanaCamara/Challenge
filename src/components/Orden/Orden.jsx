@@ -3,9 +3,11 @@ import { Box, Typography, InputLabel } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { useProducts } from '../../hooks/useProducts';
 
-export default function SelectOrden({handleOrden, handleReset }) {
+export default function SelectOrden({ }) {
   const [age, setAge] = React.useState('');
+  const { handleReset, handleOrden  } = useProducts()
 
   const handleChange = (event) => {
     event.preventDefault();

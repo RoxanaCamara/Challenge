@@ -11,6 +11,7 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { TextField } from '@mui/material';
 import { useState } from 'react';
+import { useProducts } from '../../hooks/useProducts';
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -53,10 +54,11 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-const FilterSelect = ({ handleFilter, handleReset}) => {
+const FilterSelect = ({ }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const [filter, setFilter] = useState({ min: 0, max: 0 })
+  const { handleReset, handleFilter } = useProducts()
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);

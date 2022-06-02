@@ -2,15 +2,15 @@
 export const reducer = (state, action) => {
   switch (action.type) {
     case ACTION_ORDEN:   
-      return { ...state, productosCurrent: handleChangeOrden(action.typeOrden, state.productosCurrent)};
+      return { ...state, productos: handleChangeOrden(action.typeOrden, state)};
     case ACTION_FILTER:
-      return{ ...state, productosCurrent: handleChangeFilter(action.filter, state.productos)}
+      return{ ...state, productos: handleChangeFilter(action.filter, state)}
     case ACTION_SEARCH:
-      return {  ...state, productosCurrent: handleChangeSearch(action.textSearch, state.productos) } 
+      return {  ...state, productos: handleChangeSearch(action.textSearch, state) } 
     case ACTION_PAGE:
-      return {  ...state, productosCurrent: handleChangePage(action.num, state.productosCurrent) }
+      return {  ...state, productos: handleChangePage(action.num, state) }
     case ACTION_RESET:
-      return {  ...state, productosCurrent: state.productos }
+      return {  ...state, productos: state }
     default:
       return state;
   }
@@ -40,10 +40,12 @@ const handleChangeSearch = (textSearch, productos) => {
 };
 
 const handleChangePage = (num, list) => { 
+  console.log("handleChangePage")
+  console.log(list)
   let fin = num * CANT_ITEM_PANT
   let inicio = fin - CANT_ITEM_PANT
-  let newlist = list.slice(inicio, fin)
- return newlist
+  //let newlist = list.slice(inicio, fin)
+ return list
 }
 
 export const CANT_ITEM_PANT = 16;
@@ -52,3 +54,5 @@ export const ACTION_FILTER = 'FILTER'
 export const ACTION_SEARCH = 'SEARCH'
 export const ACTION_PAGE = 'PAGE'
 export const ACTION_RESET = 'RESET'
+
+
