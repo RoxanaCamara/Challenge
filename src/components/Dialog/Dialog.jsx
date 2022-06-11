@@ -70,7 +70,7 @@ const DialogLogin = ({ handleLoginUser }) => {
         Login
       </Button>
       <Dialog
-        fullScreen
+        
         open={open}
         onClose={handleClose}
         TransitionComponent={Transition}

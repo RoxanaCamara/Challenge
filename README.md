@@ -26,4 +26,6 @@ El usuario tiene una cantidad definida de puntos y cada producto vale una cantid
 * El código de la aplicación debe estar subida a un repositorio de público acceso.
 
 
-### Sin Redux 
+### 
+**** Sin Redux 
+**** sin rutas lo maximo posible

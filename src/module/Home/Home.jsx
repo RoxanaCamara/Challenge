@@ -4,6 +4,7 @@ import ResponsiveAppBar from "../../components/Navigation/Navigation";
 import { lightTheme } from "../../shared/Shared";
 import { login, products } from "../../server/Server";
 import { ListerProducts } from "../../components/ListerProducts/ListerProducts";
+import { History } from "../History/History";
 
 export const Home = () => {
   const [user, setUser] = useState({ name: "Guesst", points: 0})
@@ -21,6 +22,7 @@ export const Home = () => {
     <>
       <ThemeProvider theme={lightTheme}>
         <ResponsiveAppBar handleLoginUser={handleUsuario} user={user} />                
+        
         
         {
           productAll && productAll.length > 0 ?

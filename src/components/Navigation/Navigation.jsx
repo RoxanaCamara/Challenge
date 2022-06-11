@@ -13,6 +13,8 @@ import MenuItem from '@mui/material/MenuItem';
 import DialogLogin from '../Dialog/Dialog';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import MenuIcon from '@mui/icons-material/Menu';
+import { History } from '../../module/History/History';
+import Points from '../../module/Points/Points';
 
 //* El usuario debería poder ver cuantos puntos tienen en su cuenta.
 
@@ -111,6 +113,13 @@ const ResponsiveAppBar = ({ user, handleLoginUser }) => {
             ))}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
+          <Points/>   
+          </Box>
+          
+          <Box sx={{ flexGrow: 0 }}>
+          <History/>  
+          </Box>
+          <Box sx={{ flexGrow: 0 }}>
             {
               user.name != 'Guesst' ?
 
@@ -152,8 +161,7 @@ const ResponsiveAppBar = ({ user, handleLoginUser }) => {
                         <Typography textAlign="center">{setting}</Typography>
                       </MenuItem>
                     ))}
-                  </Menu>
-
+                  </Menu>                 
                 </>
                 :
                 <DialogLogin handleLoginUser={handleLoginUser} />
