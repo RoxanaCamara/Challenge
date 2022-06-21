@@ -9,7 +9,7 @@ import ArchiveIcon from '@mui/icons-material/Archive';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { TextField } from '@mui/material';
+import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField } from '@mui/material';
 import { useState } from 'react';
 import { useProducts } from '../../hooks/useProducts';
 
@@ -59,6 +59,7 @@ const Points = ({ }) => {
   const open = Boolean(anchorEl);
   const [filter, setFilter] = useState({ min: 0, max: 0 })
   const { handleReset, handleFilter } = useProducts()
+  const [value, setValue] = useState("1000")
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -73,8 +74,10 @@ const Points = ({ }) => {
     handleFilter({ min: 0, max: 0 })
   };
 
-
+  const handleChange = () => {};
   
+
+
   return (
     <div>
       <Button
@@ -87,7 +90,7 @@ const Points = ({ }) => {
         onClick={handleClick}
         endIcon={<KeyboardArrowDownIcon />}
       >
-        filter
+        Points
       </Button>
       <StyledMenu
         id="demo-customized-menu"
@@ -99,20 +102,31 @@ const Points = ({ }) => {
         onClose={handleClose}
       >
         <MenuItem disableRipple>
-            <TextField autoComplete='off' value={filter.min} id="min" label="Min" size="small" variant="outlined" onChange={ (e) => setFilter({ ...filter, min: Number(e.target.value) })} />
+
         </MenuItem>
         <MenuItem disableRipple>
-            <TextField autoComplete='off' value={filter.max} id="max" label="Max" size="small" variant="outlined" onChange={(e) => setFilter({ ...filter, max: Number(e.target.value) })} />
+          <FormControl>
+            <FormLabel id="demo-controlled-radio-buttons-group">Points</FormLabel>
+            <RadioGroup
+              aria-labelledby="demo-controlled-radio-buttons-group"
+              name="controlled-radio-buttons-group"
+              value={value}
+              onChange={handleChange}
+            >
+              <FormControlLabel value="1000" control={<Radio />} label="1000" />
+              <FormControlLabel value="5000" control={<Radio />} label="5000" />
+              <FormControlLabel value="7500" control={<Radio />} label="7500" />
+            </RadioGroup>
+          </FormControl>
+
         </MenuItem>
         <Divider sx={{ my: 0.5 }} />
         <MenuItem onClick={handleClose} disableRipple>
-            <Button variant="contained" size="small" onClick={() => handleChangeReset}>
-            clear
+          <Button variant="contained" size="small" onClick={() => handleChangeReset}>
+            Cancel
           </Button>
-        </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
-            <Button variant="contained" size="small" onClick={() => handleFilter(filter)}>
-            result
+          <Button variant="contained" size="small" onClick={() => handleFilter(filter)}>
+            Buy
           </Button>
         </MenuItem>
       </StyledMenu>

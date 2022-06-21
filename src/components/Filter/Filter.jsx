@@ -109,8 +109,7 @@ const FilterSelect = ({ }) => {
             <Button variant="contained" size="small" onClick={() => handleChangeReset}>
             clear
           </Button>
-        </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
+       
             <Button variant="contained" size="small" onClick={() => handleFilter(filter)}>
             result
           </Button>

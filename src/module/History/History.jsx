@@ -11,12 +11,13 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
+import MediaCard from '../../components/CardProduct/CardProduct';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export const History = () => {
+export const History = ({ productosHistory, points= 0 }) => {
 
   const [open, setOpen] = React.useState(false);
 
@@ -53,21 +54,19 @@ export const History = () => {
               Sound
             </Typography>
             <Button autoFocus color="inherit" onClick={handleClose}>
-              save
+              close
             </Button>
           </Toolbar>
         </AppBar>
         <List>
-          <ListItem button>
-            <ListItemText primary="Phone ringtone" secondary="Titania" />
-          </ListItem>
-          <Divider />
-          <ListItem button>
-            <ListItemText
-              primary="Default notification ringtone"
-              secondary="Tethys"
-            />
-          </ListItem>
+          {productosHistory.map(function ene(p, i) {
+            return (
+              <ListItem button>
+                <MediaCard key={i} product={p} pricePoints={p.pricePoints} pricePointsUser={points} />
+                <Divider />
+              </ListItem>)
+          }
+          )}
         </List>
       </Dialog>
     </div>
