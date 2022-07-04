@@ -20,7 +20,7 @@ import Points from '../../module/Points/Points';
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = [ 'Account', 'Buy Points $', 'Historial', 'Favorites', 'Logout'];
 
-const ResponsiveAppBar = ({ user, handleLoginUser }) => {
+const ResponsiveAppBar = ({ user, handleLoginUser, handlePoints }) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -109,16 +109,21 @@ const ResponsiveAppBar = ({ user, handleLoginUser }) => {
               </Button>
             ))}
           </Box>
+         {
+          user &&
+         <>         
           <Box sx={{ flexGrow: 0 }}>
-          <Points/>   
+          <Points handlePoints={handlePoints}/>   
           </Box>
-          
+        
           <Box sx={{ flexGrow: 0 }}>
-          <History/>  
+           <History/> 
           </Box>
+          </>
+         }
           <Box sx={{ flexGrow: 0 }}>
             {
-              user.name != 'Guesst' ?
+              user ?
 
                 <>
                   <Tooltip title="Open settings">

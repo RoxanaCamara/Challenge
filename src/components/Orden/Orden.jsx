@@ -6,7 +6,7 @@ import Select from '@mui/material/Select';
 import { useProducts } from '../../hooks/useProducts';
 
 export default function SelectOrden({ }) {
-  const [age, setAge] = React.useState('');
+  const [age, setAge] = React.useState('mas_relevantes');
   const { handleReset, handleOrden  } = useProducts()
 
   const handleChange = (event) => {
@@ -24,10 +24,9 @@ export default function SelectOrden({ }) {
           displayEmpty
           inputProps={{ 'aria-label': 'Without label' }}
         >
-          <MenuItem value="">
-            <em>None</em>
+          <MenuItem value="mas_relevantes">
+            <em>Mas Relevantes</em>
           </MenuItem>
-          <MenuItem value={'mas_relevantes'}>Mas Relevantes</MenuItem>
           <MenuItem value={'mas_baratos'}>Mas Baratos</MenuItem>
           <MenuItem value={'mas_caros'}>Mas Caros</MenuItem>
         </Select>

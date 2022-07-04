@@ -4,7 +4,7 @@ import MediaCard from '../CardProduct/CardProduct';
 import { SubNabigation } from '../SubNavigation/SubNabigation';
 import { useProducts } from '../../hooks/useProducts';
 
-export const ListerProducts = ({ points, productosCurrent }) => {    
+export const ListerProducts = ({ points, productosCurrent , }) => {    
   const [page, setPage] = useState({ currentPage: 1, totalPages: 1 })
   const { handlePage, handleBuyProduct } = useProducts(productosCurrent)
 
@@ -12,8 +12,6 @@ export const ListerProducts = ({ points, productosCurrent }) => {
         handlePage(1)
     }, [])
 
-
-    
 
     return (
         <>

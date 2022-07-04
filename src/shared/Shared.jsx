@@ -50,3 +50,5 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
+
+export const init = { response: null, loading: false, error: null};

@@ -40,8 +40,6 @@ const handleChangeSearch = (textSearch, productos) => {
 };
 
 const handleChangePage = (num, list) => { 
-  console.log("handleChangePage")
-  console.log(list)
   let fin = num * CANT_ITEM_PANT
   let inicio = fin - CANT_ITEM_PANT
   //let newlist = list.slice(inicio, fin)

@@ -11,17 +11,18 @@ export const instanceAxios = axios.create({
 });
 
 const handleGet = async (path, functionLogin) => {
+  functionLogin({ error: null, loading: true, response: null});
   await instanceAxios.get(path).then(function (response) {
     if(response.data){
-      functionLogin(response.data);
+      functionLogin({ error: null, loading: false, response: response.data});
     }
-  }).catch(err => { console.log(err) });;
+  }).catch(err => functionLogin({ error: err, loading: false, response:null}))
 };
 
 const handlePost = async (functionLogin, path, value) => {
   await instanceAxios.post(path, value).then(function (response) {
-    functionLogin(response.data);
-  }).catch(err => { console.log(err) });;
+    functionLogin({ error: null, loading: false, response: response.data});
+  }).catch(err =>  functionLogin({ error: err, loading: false, response:null}));
 };
 
 //user
@@ -31,7 +32,9 @@ export const login = async (functionLogin) => {
 
 //add points
 export const pointsAdd = async (functionLogin, value) => {
-  await handlePost('/user/points', functionLogin, value)
+  await instanceAxios.post('/user/points', value).then(function (response) {
+    functionLogin({ error: null, loading: false, response: response.data['New Points']});
+  }).catch(err =>  functionLogin({ error: err, loading: false, response:null}));
 };
 
 //history

@@ -3,20 +3,14 @@ import { styled, alpha } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import EditIcon from '@mui/icons-material/Edit';
-import Divider from '@mui/material/Divider';
-import ArchiveIcon from '@mui/icons-material/Archive';
-import FileCopyIcon from '@mui/icons-material/FileCopy';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { TextField } from '@mui/material';
-import { useState } from 'react';
 import { useProducts } from '../../hooks/useProducts';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import { init } from '../../shared/Shared';
+import { Divider } from '@mui/material';
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -59,28 +53,28 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-const Points = ({ }) => {
+const Points = ({ handlePoints }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  const [filter, setFilter] = useState({ min: 0, max: 0 })
-  const { handleReset, handleFilter } = useProducts()
+  const [value, setValue] = React.useState(0);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+  const handleBuy = () => {
+    handlePoints({amount: value})
+    handleClose()
   };
 
   const handleClose = () => {
     setAnchorEl(null);
   };
 
-  const handleChangeReset = () => {
-    handleReset();
-    handleFilter({ min: 0, max: 0 })
-  };
-  const [value, setValue] = React.useState('female');
+
 
   const handleChange = (event) => {
-    setValue(event.target.value);
+    setValue(Number(event.target.value));
+  };
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
   };
 
   
@@ -122,12 +116,11 @@ const Points = ({ }) => {
     </FormControl>
         </MenuItem>
         <Divider sx={{ my: 0.5 }} />
-        <MenuItem onClick={handleClose} disableRipple>
-            <Button variant="contained" size="small" onClick={() => handleChangeReset}>
+        <MenuItem disableRipple>
+            <Button variant="contained" size="small" onClick={() => handleClose}>
             cancel
-          </Button>
-       
-            <Button variant="contained" size="small" onClick={() => handleFilter(filter)}>
+          </Button>       
+            <Button variant="contained" size="small" onClick={handleBuy}>
             Buy
           </Button>
         </MenuItem>
