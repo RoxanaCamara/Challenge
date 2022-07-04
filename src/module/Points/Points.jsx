@@ -9,9 +9,14 @@ import ArchiveIcon from '@mui/icons-material/Archive';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField } from '@mui/material';
+import { TextField } from '@mui/material';
 import { useState } from 'react';
 import { useProducts } from '../../hooks/useProducts';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -59,7 +64,6 @@ const Points = ({ }) => {
   const open = Boolean(anchorEl);
   const [filter, setFilter] = useState({ min: 0, max: 0 })
   const { handleReset, handleFilter } = useProducts()
-  const [value, setValue] = useState("1000")
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -73,11 +77,13 @@ const Points = ({ }) => {
     handleReset();
     handleFilter({ min: 0, max: 0 })
   };
+  const [value, setValue] = React.useState('female');
 
-  const handleChange = () => {};
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
+
   
-
-
   return (
     <div>
       <Button
@@ -88,9 +94,8 @@ const Points = ({ }) => {
         variant="contained"
         disableElevation
         onClick={handleClick}
-        endIcon={<KeyboardArrowDownIcon />}
       >
-        Points
+        Buy Points
       </Button>
       <StyledMenu
         id="demo-customized-menu"
@@ -102,30 +107,27 @@ const Points = ({ }) => {
         onClose={handleClose}
       >
         <MenuItem disableRipple>
-
-        </MenuItem>
-        <MenuItem disableRipple>
-          <FormControl>
-            <FormLabel id="demo-controlled-radio-buttons-group">Points</FormLabel>
-            <RadioGroup
-              aria-labelledby="demo-controlled-radio-buttons-group"
-              name="controlled-radio-buttons-group"
-              value={value}
-              onChange={handleChange}
-            >
-              <FormControlLabel value="1000" control={<Radio />} label="1000" />
-              <FormControlLabel value="5000" control={<Radio />} label="5000" />
-              <FormControlLabel value="7500" control={<Radio />} label="7500" />
-            </RadioGroup>
-          </FormControl>
-
+        <FormControl>
+      <FormLabel id="demo-controlled-radio-buttons-group">How many?</FormLabel>
+      <RadioGroup
+        aria-labelledby="demo-controlled-radio-buttons-group"
+        name="controlled-radio-buttons-group"
+        value={value}
+        onChange={handleChange}
+      >
+        <FormControlLabel value="1000" control={<Radio />} label="1000" />
+        <FormControlLabel value="5000" control={<Radio />} label="5000" />
+        <FormControlLabel value="75000" control={<Radio />} label="75000" />
+      </RadioGroup>
+    </FormControl>
         </MenuItem>
         <Divider sx={{ my: 0.5 }} />
         <MenuItem onClick={handleClose} disableRipple>
-          <Button variant="contained" size="small" onClick={() => handleChangeReset}>
-            Cancel
+            <Button variant="contained" size="small" onClick={() => handleChangeReset}>
+            cancel
           </Button>
-          <Button variant="contained" size="small" onClick={() => handleFilter(filter)}>
+       
+            <Button variant="contained" size="small" onClick={() => handleFilter(filter)}>
             Buy
           </Button>
         </MenuItem>

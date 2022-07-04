@@ -16,9 +16,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { History } from '../../module/History/History';
 import Points from '../../module/Points/Points';
 
-//* El usuario debería poder ver cuantos puntos tienen en su cuenta.
-
-
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = [ 'Account', 'Buy Points $', 'Historial', 'Favorites', 'Logout'];

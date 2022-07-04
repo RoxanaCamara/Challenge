@@ -31,9 +31,9 @@ export const History = ({ productosHistory, points= 0 }) => {
 
   return (
     <div>
-      <Button variant="contained" onClick={handleClickOpen}>
-        Mis compras
-      </Button>
+      <Typography variant="h6" gutterBottom component="div" onClick={handleClickOpen}>
+      Mis compras
+      </Typography>
       <Dialog
         fullScreen
         open={open}
@@ -59,14 +59,22 @@ export const History = ({ productosHistory, points= 0 }) => {
           </Toolbar>
         </AppBar>
         <List>
-          {productosHistory.map(function ene(p, i) {
+          { productosHistory ?
+
+          productosHistory.map(function ene(p, i) {
             return (
               <ListItem button>
                 <MediaCard key={i} product={p} pricePoints={p.pricePoints} pricePointsUser={points} />
                 <Divider />
               </ListItem>)
           }
-          )}
+          )
+          :
+          <Typography variant="body2" component="div" color="text.secondary">
+          no hay compras registradas
+        </Typography>
+
+        }
         </List>
       </Dialog>
     </div>

@@ -15,13 +15,13 @@ const handleGet = async (path, functionLogin) => {
     if(response.data){
       functionLogin(response.data);
     }
-  });
+  }).catch(err => { console.log(err) });;
 };
 
 const handlePost = async (functionLogin, path, value) => {
   await instanceAxios.post(path, value).then(function (response) {
     functionLogin(response.data);
-  });
+  }).catch(err => { console.log(err) });;
 };
 
 //user
